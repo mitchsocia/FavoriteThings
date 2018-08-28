@@ -10,7 +10,7 @@ import UIKit
 
 class ThingsViewController: UITableViewController {
 
-    var listFavoriteThings = ["Pizza", "Sunshine", "Steely Dan", "TV!", "INFORMATION", "Jenny❤️", "Corn", "Lists"]
+    var listFavoriteThings = ["Mom", "Dad", "Dogs", "Lists", "Pizza", "Bread", "Sunshine", "Steely Dan", "TV!", "INFORMATION", "Jenny❤️", "Corn", "Pizza", "90 Day Fiance"]
     // ^ an array called down farther
     
     override func viewDidLoad() {
@@ -23,7 +23,7 @@ class ThingsViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 8
+        return listFavoriteThings.count
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -36,9 +36,13 @@ class ThingsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
-
     
-
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == UITableViewCellEditingStyle.delete) {
+            listFavoriteThings.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .top)
+        }
+    }
 }
 
 
