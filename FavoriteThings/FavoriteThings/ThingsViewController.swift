@@ -10,7 +10,7 @@ import UIKit
 
 class ThingsViewController: UITableViewController {
 
-    var listFavoriteThings = ["Pizza", "Sunshine", "Steely Dan", "TV!", "INFORMATION"]
+    var listFavoriteThings = ["Pizza", "Sunshine", "Steely Dan", "TV!", "INFORMATION", "Jenny❤️", "Corn", "Lists"]
     // ^ an array called down farther
     
     override func viewDidLoad() {
@@ -22,35 +22,29 @@ class ThingsViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 5
-}
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
-    {
+        return 8
+    }
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ThingsItem", for: indexPath)
+   
+        cell.textLabel?.text = listFavoriteThings[indexPath.row]
+        
+        return cell
+    }
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+
     
-    let cell = tableView.dequeueReusableCell(withIdentifier: "listFavoriteThings", for: indexPath)
-    
-    cell.textLabel?.text = listFavoriteThings[indexPath.row]
-    // the array from above called here
-    
-    return cell
+
 }
 
-override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    
-    if let cell = tableView.cellForRow(at: indexPath) {
-        if cell.accessoryType == .none {
-            cell.accessoryType = .checkmark
-        } else {
-            cell.accessoryType = .none
-            
-        }
-    }
-    
-    tableView.deselectRow(at: indexPath, animated: true)
-}
-}
+
+
+
+
 
 
 
